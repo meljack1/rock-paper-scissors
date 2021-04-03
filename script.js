@@ -6,15 +6,15 @@ let computerWinCount = 0;
 let playerSelection;
 let computerSelection;
 
-// pick random move for computer
+// picks random move for computer from rockPaperScissors array
 function computerPlay() {
     let rockPaperScissors = ["Rock", "Paper", "Scissors"];
     let random = Math.floor(Math.random() * rockPaperScissors.length);
     return rockPaperScissors[random];
 }
 
-// return win or loss message
-function winOrLose(win) {
+// counts and announces player and computer wins from playRound function 
+function countWins(win) {
     if (win == "win") {
         playerWinCount++;
         console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
@@ -26,10 +26,9 @@ function winOrLose(win) {
     } else {
         console.log("That's not how you play Rock Paper Scissors, baka!");
     }
-
 }
 
-// determine game result
+// compares playerSelection to computerSelection to determine win/loss/tie
 function playRound(playerSelection, computerSelection) {
     
     if (playerSelection.toLowerCase() == "rock") {
@@ -72,22 +71,20 @@ function playRound(playerSelection, computerSelection) {
         win = "error";
     }
 
-    return winOrLose(win);
+    countWins(win);
 }
 
+// plays five rounds of rock paper scissors using playRound function
 function game() {
     for (i = 0; i < 5; i++){
         // get player selection
         playerSelection = prompt("Rock, paper, scissors?");
-
-        // get computer selection
         computerSelection = computerPlay();
 
-        // play one round
         playRound(playerSelection, computerSelection);
     }
 
-    // determines overall winner
+    // compares playerWinCount to computerWinCount to determine overall winner after 5 rounds
     if(playerWinCount > computerWinCount){
         console.log("You win! Well done!");
     } else if(playerWinCount < computerWinCount) {
