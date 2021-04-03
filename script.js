@@ -1,5 +1,10 @@
-// determine if player wins or not
+// determines if player wins or not
 let win;
+// counts number of wins
+let playerWinCount = 0;
+let computerWinCount = 0;
+let playerSelection;
+let computerSelection;
 
 // pick random move for computer
 function computerPlay() {
@@ -11,13 +16,15 @@ function computerPlay() {
 // return win or loss message
 function winOrLose(win) {
     if (win == "win") {
-        return `You win! ${playerSelection} beats ${computerSelection}!`;
+        playerWinCount++;
+        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
     } else if (win == "lose") {
-        return `You lose! ${computerSelection} beats ${playerSelection}!`;
+        computerWinCount++;
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
     } else if (win == "tie") {
-        return "It's a tie!";
+        console.log("It's a tie!");
     } else {
-        return "That's not how you play Rock Paper Scissors, baka!";
+        console.log("That's not how you play Rock Paper Scissors, baka!");
     }
 
 }
@@ -68,9 +75,26 @@ function playRound(playerSelection, computerSelection) {
     return winOrLose(win);
 }
 
+function game() {
+    for (i = 0; i < 5; i++){
+        // get player selection
+        playerSelection = prompt("Rock, paper, scissors?");
 
-// get player selection
-const playerSelection = prompt("Rock, paper, scissors?");
+        // get computer selection
+        computerSelection = computerPlay();
 
-// get computer selection
-const computerSelection = computerPlay();
+        // play one round
+        playRound(playerSelection, computerSelection);
+    }
+
+    // determines overall winner
+    if(playerWinCount > computerWinCount){
+        console.log("You win! Well done!");
+    } else if(playerWinCount < computerWinCount) {
+        console.log("You lose! Better luck next time.");
+    } else {
+        console.log("It's a tie!");
+    }
+}
+
+game();
