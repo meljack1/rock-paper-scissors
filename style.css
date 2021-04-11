@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&family=Press+Start+2P&display=swap');
+
+html {
+    font-family: "Press Start 2P", Arial;
+    font-size: 20px;
+    color: black;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-align: center;
+    background-color: rgb(134, 216, 148);
+    background: no-repeat url("https://cdn.wallpapersafari.com/85/89/6lOBvr.png");
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 40px;
+}
+
+
+.youDiv, .opponentDiv {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#resultDiv {
+    max-width: 700px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0px 10px;
+    border: 3px solid rgb(255, 255, 255);
+    outline: 3px solid rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.pokemonDiv, #squirtlePlayer, #bulbasaurPlayer, #charmanderPlayer {
+    margin: 10px;
+}
+
+img {
+    width: 100px; 
+    height: 100px;
+    border: 3px solid rgb(255, 255, 255);
+    outline: 3px solid rgb(0, 0, 0);
+    padding: 30px; 
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.bulbasaur:hover, .charmander:hover, .squirtle:hover {
+    width: 120px;
+    height: 120px;
+    transition: all 0.5s ease;
+}
+
+ 

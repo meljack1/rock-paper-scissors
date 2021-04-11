@@ -6,64 +6,97 @@ let computerWinCount = 0;
 let playerSelection;
 let computerSelection;
 
+const resultDiv = document.querySelector('#resultDiv');
+const resultText = document.createElement("p");
+
+const bulbasaur = document.querySelector('#bulbasaurPlayer');
+bulbasaur.addEventListener('click', () => {
+  playerSelection = "Bulbasaur";
+  computerSelection = computerPlay();
+  playRound(playerSelection, computerSelection);
+});
+
+const charmander = document.querySelector('#charmanderPlayer');
+charmander.addEventListener('click', () => {
+  playerSelection = "Charmander";
+  computerSelection = computerPlay();
+  playRound(playerSelection, computerSelection);
+});
+
+const squirtle = document.querySelector('#squirtlePlayer');
+squirtle.addEventListener('click', () => {
+  playerSelection = "Squirtle";
+  computerSelection = computerPlay();
+  playRound(playerSelection, computerSelection);
+});
+
 // picks random move for computer from rockPaperScissors array
 function computerPlay() {
-    let rockPaperScissors = ["Rock", "Paper", "Scissors"];
-    let random = Math.floor(Math.random() * rockPaperScissors.length);
-    return rockPaperScissors[random];
+    let pokemonArray = ["Bulbasaur", "Charmander", "Squirtle"];
+    let random = Math.floor(Math.random() * pokemonArray.length);
+    return pokemonArray[random];
 }
 
 // counts and announces player and computer wins from playRound function 
 function countWins(win) {
+
     if (win == "win") {
         playerWinCount++;
-        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        resultText.classList.add('resultText');
+        resultText.textContent = `Your moves are super effective! ${playerSelection} beats ${computerSelection}!`;
+        resultDiv.appendChild(resultText);
     } else if (win == "lose") {
         computerWinCount++;
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+        resultText.classList.add('resultText');
+        resultText.textContent = `Your moves are not very effective! ${computerSelection} beats ${playerSelection}!`;
+        resultDiv.appendChild(resultText);
     } else if (win == "tie") {
-        console.log("It's a tie!");
+        resultText.classList.add('resultText');
+        resultText.textContent = "It's a tie!";
+        resultDiv.appendChild(resultText);
     } else {
-        console.log("That's not how you play Rock Paper Scissors, baka!");
+        resultText.classList.add('resultText');
+        resultText.textContent = "Something went horribly wrong...";
+        resultDiv.appendChild(resultText);
     }
 }
 
 // compares playerSelection to computerSelection to determine win/loss/tie
 function playRound(playerSelection, computerSelection) {
     
-    if (playerSelection.toLowerCase() == "rock") {
+    if (playerSelection == "Bulbasaur") {
         switch(computerSelection) {
-            case "Rock": 
+            case "Bulbasaur": 
                 win = "tie";
                 break;
-            case "Scissors":
+            case "Squirtle":
                 win = "win";
                 break;
-            case "Paper":
+            case "Charmander":
                 win = "lose";
                 break;
         }
-    } else if (playerSelection.toLowerCase() == "scissors") {
+    } else if (playerSelection == "Charmander") {
         switch(computerSelection) {
-            case "Rock": 
+            case "Squirtle": 
                 win = "lose";
                 break;
-            case "Scissors":
+            case "Charmander":
                 win = "tie";
                 break;
-            case "Paper":
+            case "Bulbasaur":
                 win = "win";
                 break;
         }
-    } else if (playerSelection.toLowerCase() == "paper") {
+    } else if (playerSelection == "Squirtle") {
         switch(computerSelection) {
-            case "Rock": 
+            case "Charmander": 
                 win = "win";
                 break;
-            case "Scissors":
+            case "Bulbasaur":
                 win = "lose";
                 break;
-            case "Paper":
+            case "Squirtle":
                 win = "tie";
                 break;
         }
@@ -74,24 +107,4 @@ function playRound(playerSelection, computerSelection) {
     countWins(win);
 }
 
-// plays five rounds of rock paper scissors using playRound function
-function game() {
-    for (i = 0; i < 5; i++){
-        // get player selection
-        playerSelection = prompt("Rock, paper, scissors?");
-        computerSelection = computerPlay();
-
-        playRound(playerSelection, computerSelection);
-    }
-
-    // compares playerWinCount to computerWinCount to determine overall winner after 5 rounds
-    if(playerWinCount > computerWinCount){
-        console.log("You win! Well done!");
-    } else if(playerWinCount < computerWinCount) {
-        console.log("You lose! Better luck next time.");
-    } else {
-        console.log("It's a tie!");
-    }
-}
-
-game();
+ 
