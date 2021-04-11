@@ -42,7 +42,7 @@ function printComputerWin() {
 
 const battleMusic = document.querySelector('#battleMusic');
 const winMusic = document.querySelector('#winMusic');
-battleMusic.autoplay = true;
+
 
 // resets opponent selection animation
 function resetSelected() {
@@ -56,6 +56,7 @@ const bulbasaurPlayer = document.querySelector('#bulbasaurPlayer');
 bulbasaurPlayer.addEventListener('click', () => {
     if (playerWinCount < 5 && computerWinCount < 5) {
         resetSelected();
+        battleMusic.play();
         playerSelection = "Bulbasaur";
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
@@ -66,6 +67,7 @@ const charmanderPlayer = document.querySelector('#charmanderPlayer');
 charmanderPlayer.addEventListener('click', () => {
     if (playerWinCount < 5 && computerWinCount < 5) {
         resetSelected();
+        battleMusic.play();
         playerSelection = "Charmander";
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
@@ -76,6 +78,7 @@ const squirtle = document.querySelector('#squirtlePlayer');
 squirtlePlayer.addEventListener('click', () => {
     if (playerWinCount < 5 && computerWinCount < 5) {
         resetSelected();
+        battleMusic.play();
         playerSelection = "Squirtle";
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
