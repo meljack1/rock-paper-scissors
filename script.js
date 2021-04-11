@@ -26,10 +26,6 @@ opponentScoreText.classList.add('opponentScore');
 opponentScoreText.textContent = `Score: ${computerWinCount}`;
 opponentScore.appendChild(opponentScoreText);
 
-const battleMusic = document.querySelector('#battleMusic');
-const winMusic = document.querySelector('#winMusic');
-
-battleMusic.play();
 
 function printPlayerWin() {
     resultText.textContent = "Your Pokémon defeated your opponent. You win!";
@@ -44,6 +40,9 @@ function printComputerWin() {
     battleMusic.pause();
 }
 
+const battleMusic = document.querySelector('#battleMusic');
+const winMusic = document.querySelector('#winMusic');
+battleMusic.autoplay = true;
 
 // resets opponent selection animation
 function resetSelected() {
