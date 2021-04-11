@@ -13,6 +13,18 @@ const bulbasaurOpponent = document.querySelector('#bulbasaurOppImg');
 const charmanderOpponent = document.querySelector('#charmanderOppImg');
 const squirtleOpponent = document.querySelector('#squirtleOppImg');
 
+const playerScore = document.querySelector('#playerScore');
+const playerScoreText = document.createElement("p");
+playerScoreText.classList.add('playerScore');
+playerScoreText.textContent = `Score: ${playerWinCount}`;
+playerScore.appendChild(playerScoreText);
+
+const opponentScore = document.querySelector('#opponentScore');
+const opponentScoreText = document.createElement("p");
+opponentScoreText.classList.add('opponentScore');
+opponentScoreText.textContent = `Score: ${computerWinCount}`;
+opponentScore.appendChild(opponentScoreText);
+
 function resetSelected() {
     bulbasaurOpponent.classList.remove("selected");
     charmanderOpponent.classList.remove("selected");
@@ -56,6 +68,7 @@ function computerPlay() {
     } else {
         squirtleOpponent.classList.add("selected");
     }
+    
     return result;
 }
 
@@ -67,11 +80,17 @@ function countWins(win) {
         resultText.classList.add('resultText');
         resultText.textContent = `Your moves are super effective! ${playerSelection} beats ${computerSelection}!`;
         resultDiv.appendChild(resultText);
+
+        playerScoreText.textContent = `Score: ${playerWinCount}`;
+        playerScore.appendChild(playerScoreText);
     } else if (win == "lose") {
         computerWinCount++;
         resultText.classList.add('resultText');
         resultText.textContent = `Your moves are not very effective. ${computerSelection} beats ${playerSelection}!`;
         resultDiv.appendChild(resultText);
+
+        opponentScoreText.textContent = `Score: ${computerWinCount}`;
+        opponentScore.appendChild(opponentScoreText);
     } else if (win == "tie") {
         resultText.classList.add('resultText');
         resultText.textContent = "Both Pokémon fought really hard... and passed out. It's a tie!";
