@@ -13,11 +13,9 @@ html {
     background-size: cover;
     box-sizing: border-box;
 }
-
 body {
     margin: 40px;
 }
-
 img {
     width: 100px; 
     height: 100px;
@@ -27,11 +25,9 @@ img {
     margin: 10px;
     background-color: rgba(255, 255, 255, 0.25);
 }
-
 .pokemonDiv {
     margin: 10px;
 }
-
 #youDiv, #opponentDiv {
     max-width: 1000px;
     width: 100%;
@@ -41,7 +37,6 @@ img {
     flex-wrap: wrap;
     align-items: center;
 }
-
 #resultDiv {
     max-width: 700px;
     width: 100%;
@@ -51,15 +46,12 @@ img {
     outline: 3px solid rgb(0, 0, 0);
     background-color: rgba(255, 255, 255, 0.3);
 }
-
-
 #bulbasaur:hover, #charmander:hover, #squirtle:hover {
     width: 120px;
     height: 120px;
     background-color: rgb(255, 255, 255, 0.6);
     transition: all 0.5s ease;
 }
-
 .selected {
     width: 120px;
     height: 120px;
