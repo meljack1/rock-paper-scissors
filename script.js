@@ -9,32 +9,54 @@ let computerSelection;
 const resultDiv = document.querySelector('#resultDiv');
 const resultText = document.createElement("p");
 
-const bulbasaur = document.querySelector('#bulbasaurPlayer');
-bulbasaur.addEventListener('click', () => {
-  playerSelection = "Bulbasaur";
-  computerSelection = computerPlay();
-  playRound(playerSelection, computerSelection);
+const bulbasaurOpponent = document.querySelector('#bulbasaurOppImg');
+const charmanderOpponent = document.querySelector('#charmanderOppImg');
+const squirtleOpponent = document.querySelector('#squirtleOppImg');
+
+function resetSelected() {
+    bulbasaurOpponent.classList.remove("selected");
+    charmanderOpponent.classList.remove("selected");
+    squirtleOpponent.classList.remove("selected");
+}
+
+const bulbasaurPlayer = document.querySelector('#bulbasaurPlayer');
+bulbasaurPlayer.addEventListener('click', () => {
+    resetSelected();
+    playerSelection = "Bulbasaur";
+    computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
 });
 
-const charmander = document.querySelector('#charmanderPlayer');
-charmander.addEventListener('click', () => {
-  playerSelection = "Charmander";
-  computerSelection = computerPlay();
-  playRound(playerSelection, computerSelection);
+const charmanderPlayer = document.querySelector('#charmanderPlayer');
+charmanderPlayer.addEventListener('click', () => {
+    resetSelected();
+    playerSelection = "Charmander";
+    computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
 });
 
 const squirtle = document.querySelector('#squirtlePlayer');
-squirtle.addEventListener('click', () => {
-  playerSelection = "Squirtle";
-  computerSelection = computerPlay();
-  playRound(playerSelection, computerSelection);
+squirtlePlayer.addEventListener('click', () => {
+    resetSelected();
+    playerSelection = "Squirtle";
+    computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
 });
 
 // picks random move for computer from rockPaperScissors array
 function computerPlay() {
     let pokemonArray = ["Bulbasaur", "Charmander", "Squirtle"];
     let random = Math.floor(Math.random() * pokemonArray.length);
-    return pokemonArray[random];
+    let result = pokemonArray[random];
+
+    if (result == "Bulbasaur") {
+        bulbasaurOpponent.classList.add("selected");
+    } else if (result == "Charmander") {
+        charmanderOpponent.classList.add("selected");
+    } else {
+        squirtleOpponent.classList.add("selected");
+    }
+    return result;
 }
 
 // counts and announces player and computer wins from playRound function 
@@ -48,11 +70,11 @@ function countWins(win) {
     } else if (win == "lose") {
         computerWinCount++;
         resultText.classList.add('resultText');
-        resultText.textContent = `Your moves are not very effective! ${computerSelection} beats ${playerSelection}!`;
+        resultText.textContent = `Your moves are not very effective. ${computerSelection} beats ${playerSelection}!`;
         resultDiv.appendChild(resultText);
     } else if (win == "tie") {
         resultText.classList.add('resultText');
-        resultText.textContent = "It's a tie!";
+        resultText.textContent = "Both Pokémon fought really hard... and passed out. It's a tie!";
         resultDiv.appendChild(resultText);
     } else {
         resultText.classList.add('resultText');
