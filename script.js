@@ -13,6 +13,7 @@ const bulbasaurOpponent = document.querySelector('#bulbasaurOppImg');
 const charmanderOpponent = document.querySelector('#charmanderOppImg');
 const squirtleOpponent = document.querySelector('#squirtleOppImg');
 
+// adds player and opponent score to page
 const playerScore = document.querySelector('#playerScore');
 const playerScoreText = document.createElement("p");
 playerScoreText.classList.add('playerScore');
@@ -25,34 +26,58 @@ opponentScoreText.classList.add('opponentScore');
 opponentScoreText.textContent = `Score: ${computerWinCount}`;
 opponentScore.appendChild(opponentScoreText);
 
+
+function printPlayerWin(playerWinCount) {
+    if (playerWinCount == 5) {
+        resultText.textContent = "Your Pokémon defeated your opponent. You win!";
+        resultDiv.appendChild(resultText);
+    }
+}
+
+function printComputerWin(computerWinCount) {
+    if (computerWinCount == 5) {
+        resultText.textContent = "Your opponent's Pokémon were too strong. You lose...";
+        resultDiv.appendChild(resultText);
+    }
+}
+
+
+// resets opponent selection animation
 function resetSelected() {
     bulbasaurOpponent.classList.remove("selected");
     charmanderOpponent.classList.remove("selected");
     squirtleOpponent.classList.remove("selected");
 }
 
+// plays a round if bulbasaur/charmander/squirtle clicked
 const bulbasaurPlayer = document.querySelector('#bulbasaurPlayer');
 bulbasaurPlayer.addEventListener('click', () => {
     resetSelected();
     playerSelection = "Bulbasaur";
-    computerSelection = computerPlay();
-    playRound(playerSelection, computerSelection);
+    if (playerWinCount < 5 && computerWinCount < 5) {
+        computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection);
+    } 
 });
 
 const charmanderPlayer = document.querySelector('#charmanderPlayer');
 charmanderPlayer.addEventListener('click', () => {
     resetSelected();
     playerSelection = "Charmander";
-    computerSelection = computerPlay();
-    playRound(playerSelection, computerSelection);
+    if (playerWinCount < 5 && computerWinCount < 5) {
+        computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection);
+    }
 });
 
 const squirtle = document.querySelector('#squirtlePlayer');
 squirtlePlayer.addEventListener('click', () => {
     resetSelected();
     playerSelection = "Squirtle";
-    computerSelection = computerPlay();
-    playRound(playerSelection, computerSelection);
+    if (playerWinCount < 5 && computerWinCount < 5) {
+        computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection);
+    }
 });
 
 // picks random move for computer from rockPaperScissors array
