@@ -26,17 +26,22 @@ opponentScoreText.classList.add('opponentScore');
 opponentScoreText.textContent = `Score: ${computerWinCount}`;
 opponentScore.appendChild(opponentScoreText);
 
+const battleMusic = document.querySelector('#battleMusic');
+const winMusic = document.querySelector('#winMusic');
+
+battleMusic.play();
 
 function printPlayerWin() {
     resultText.textContent = "Your Pokémon defeated your opponent. You win!";
     resultDiv.appendChild(resultText);
-    
+    battleMusic.pause();
+    winMusic.play();
 }
 
 function printComputerWin() {
     resultText.textContent = "Your opponent's Pokémon were too strong. You lose...";
     resultDiv.appendChild(resultText);
-    
+    battleMusic.pause();
 }
 
 
