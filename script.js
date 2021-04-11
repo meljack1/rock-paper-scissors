@@ -27,18 +27,16 @@ opponentScoreText.textContent = `Score: ${computerWinCount}`;
 opponentScore.appendChild(opponentScoreText);
 
 
-function printPlayerWin(playerWinCount) {
-    if (playerWinCount == 5) {
-        resultText.textContent = "Your Pokémon defeated your opponent. You win!";
-        resultDiv.appendChild(resultText);
-    }
+function printPlayerWin() {
+    resultText.textContent = "Your Pokémon defeated your opponent. You win!";
+    resultDiv.appendChild(resultText);
+    
 }
 
-function printComputerWin(computerWinCount) {
-    if (computerWinCount == 5) {
-        resultText.textContent = "Your opponent's Pokémon were too strong. You lose...";
-        resultDiv.appendChild(resultText);
-    }
+function printComputerWin() {
+    resultText.textContent = "Your opponent's Pokémon were too strong. You lose...";
+    resultDiv.appendChild(resultText);
+    
 }
 
 
@@ -52,9 +50,9 @@ function resetSelected() {
 // plays a round if bulbasaur/charmander/squirtle clicked
 const bulbasaurPlayer = document.querySelector('#bulbasaurPlayer');
 bulbasaurPlayer.addEventListener('click', () => {
-    resetSelected();
-    playerSelection = "Bulbasaur";
     if (playerWinCount < 5 && computerWinCount < 5) {
+        resetSelected();
+        playerSelection = "Bulbasaur";
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
     } 
@@ -62,22 +60,22 @@ bulbasaurPlayer.addEventListener('click', () => {
 
 const charmanderPlayer = document.querySelector('#charmanderPlayer');
 charmanderPlayer.addEventListener('click', () => {
-    resetSelected();
-    playerSelection = "Charmander";
     if (playerWinCount < 5 && computerWinCount < 5) {
+        resetSelected();
+        playerSelection = "Charmander";
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
-    }
+    } 
 });
 
 const squirtle = document.querySelector('#squirtlePlayer');
 squirtlePlayer.addEventListener('click', () => {
-    resetSelected();
-    playerSelection = "Squirtle";
     if (playerWinCount < 5 && computerWinCount < 5) {
+        resetSelected();
+        playerSelection = "Squirtle";
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
-    }
+    } 
 });
 
 // picks random move for computer from rockPaperScissors array
@@ -102,17 +100,29 @@ function countWins(win) {
 
     if (win == "win") {
         playerWinCount++;
+        if (playerWinCount == 5) {
+            printPlayerWin();
+        } else if (computerWinCount == 5) {
+            printComputerWin();
+        } else {
         resultText.classList.add('resultText');
         resultText.textContent = `Your moves are super effective! ${playerSelection} beats ${computerSelection}!`;
         resultDiv.appendChild(resultText);
+        }
 
         playerScoreText.textContent = `Score: ${playerWinCount}`;
         playerScore.appendChild(playerScoreText);
     } else if (win == "lose") {
         computerWinCount++;
+        if (playerWinCount == 5) {
+            printPlayerWin();
+        } else if (computerWinCount == 5) {
+            printComputerWin();
+        } else {
         resultText.classList.add('resultText');
         resultText.textContent = `Your moves are not very effective. ${computerSelection} beats ${playerSelection}!`;
         resultDiv.appendChild(resultText);
+        }
 
         opponentScoreText.textContent = `Score: ${computerWinCount}`;
         opponentScore.appendChild(opponentScoreText);
