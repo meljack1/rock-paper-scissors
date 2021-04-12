@@ -41,7 +41,9 @@ function printComputerWin() {
 }
 
 const battleMusic = document.querySelector('#battleMusic');
+battleMusic.currentTime = 0.8;
 const winMusic = document.querySelector('#winMusic');
+winMusic.currentTime = 0.8;
 
 
 // resets opponent selection animation
